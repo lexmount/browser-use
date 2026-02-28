@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 import time
 from typing import TYPE_CHECKING, Any
 
@@ -8,6 +9,7 @@ from cdp_use.cdp.accessibility.types import AXNode
 from cdp_use.cdp.dom.types import Node
 from cdp_use.cdp.target import TargetID
 
+from browser_use.browser.events import _get_timeout
 from browser_use.dom.enhanced_snapshot import (
 	REQUIRED_COMPUTED_STYLES,
 	build_snapshot_lookup,
@@ -545,7 +547,7 @@ class DomService:
 		}
 
 		# Wait for all tasks with timeout
-		done, pending = await asyncio.wait(tasks.values(), timeout=80.0)
+		done, pending = await asyncio.wait(tasks.values(), timeout=_get_timeout('TIMEOUT_GetAllTreesWait', 10.0))
 
 		# Retry any failed or timed out tasks
 		if pending:

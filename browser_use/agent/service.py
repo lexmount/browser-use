@@ -2472,8 +2472,7 @@ class Agent(Generic[Context, AgentStructuredOutput]):
 		on_step_end: AgentHookFunc | None = None,
 	) -> AgentHistoryList[AgentStructuredOutput]:
 		"""Execute the task with maximum number of steps"""
-		print("Test injection(lexbrowser/debug)")
-
+		print("Test injection(lexbrowser), v0.1")
 		loop = asyncio.get_event_loop()
 		agent_run_error: str | None = None  # Initialize error tracking variable
 		self._force_exit_telemetry_logged = False  # ADDED: Flag for custom telemetry on force exit
